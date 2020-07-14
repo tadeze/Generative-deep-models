@@ -1,5 +1,4 @@
 #%%
-from __future__ import print_function
 import argparse
 import torch
 import torch.utils.data
@@ -20,13 +19,14 @@ def main():
                     help='random seed (default: 1)')
     parser.add_argument('--log-interval', type=int, default=10, metavar='N',
 help='how many batches to wait before logging training status')
+
     return parser.parse_args()
 
 
 class Args:
     cuda = False
     batch_size  =128
-    epochs = 20
+    epochs = 2
     log_interval = 10
 args = Args
 #%%
@@ -45,7 +45,6 @@ D_in, H1, H2 = 784, 400, 20
 class VAE(nn.Module):
     def __init__(self):
         super(VAE, self).__init__()
-
         self.fc1 = nn.Linear(D_in, H1)
         self.fc21 = nn.Linear(H1, H2)
         self.fc22 = nn.Linear(H1, H2)
